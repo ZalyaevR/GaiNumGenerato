@@ -20,6 +20,9 @@ public abstract class NumberGenerator {
     }
 
     protected String formatNumber(int number, int l1, int l2, int l3) {
+        if (l1 < 0 || l1 >= LETTERS.length() || l2 < 0 || l2 >= LETTERS.length() || l3 < 0 || l3 >= LETTERS.length()) {
+            throw new IllegalArgumentException("Указаны неверные индексы для массива LETTERS");
+        }
         StringBuilder sb = new StringBuilder();
         sb.append(LETTERS.charAt(l1))
                 .append(String.format("%03d", number))

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class NumberController {
-    @Value("${app.name}")
+    @Value("${app.name:Gai Number Generator API}")
     private String appName;
     private final RandomNumberGenerator randomNumberGenerator;
     private final SequentialNumberGenerator sequentialNumberGenerator;

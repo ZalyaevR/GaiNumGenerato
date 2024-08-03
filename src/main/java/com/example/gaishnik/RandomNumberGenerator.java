@@ -9,13 +9,17 @@ public class RandomNumberGenerator extends NumberGenerator {
 
     @Override
     public String generate() {
-        String number;
-        do {
-            number = generateRandomNumber();
-        } while (generatedNumbers.contains(number));
-        generatedNumbers.add(number);
-        setLastGeneratedNumber(number);
-        return number;
+        try {
+            String number;
+            do {
+                number = generateRandomNumber();
+            } while (generatedNumbers.contains(number));
+            generatedNumbers.add(number);
+            setLastGeneratedNumber(number);
+            return number;
+        } catch (Exception e) {
+            return "Ошибка генерации случайного числа: " + e.getMessage();
+        }
     }
 
     private String generateRandomNumber() {

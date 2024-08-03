@@ -11,24 +11,28 @@ public class SequentialNumberGenerator extends NumberGenerator {
 
     @Override
     public String generate() {
-        if (getLastGeneratedNumber() != null) {
-            int[] parsed = parseNumber(getLastGeneratedNumber());
-            currentNumber = parsed[0];
-            letterIndex1 = parsed[1];
-            letterIndex2 = parsed[2];
-            letterIndex3 = parsed[3];
-            increment();
+        try {
+            if (getLastGeneratedNumber() != null) {
+                int[] parsed = parseNumber(getLastGeneratedNumber());
+                currentNumber = parsed[0];
+                letterIndex1 = parsed[1];
+                letterIndex2 = parsed[2];
+                letterIndex3 = parsed[3];
+                increment();
+            }
+
+            String number;
+            do {
+                number = formatNumber(currentNumber, letterIndex1, letterIndex2, letterIndex3);
+                increment();
+            } while (generatedNumbers.contains(number));
+
+            generatedNumbers.add(number);
+            setLastGeneratedNumber(number);
+            return number;
+        } catch (Exception e) {
+            return "Ошибка генерации следующего числа: " + e.getMessage();
         }
-
-        String number;
-        do {
-            number = formatNumber(currentNumber, letterIndex1, letterIndex2, letterIndex3);
-            increment();
-        } while (generatedNumbers.contains(number));
-
-        generatedNumbers.add(number);
-        setLastGeneratedNumber(number);
-        return number;
     }
 
     private void increment() {

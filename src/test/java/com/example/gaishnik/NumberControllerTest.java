@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(NumberController.class)
 public class NumberControllerTest {
 
-    @Value("${app.name}")
+    @Value("${app.name:Gai Number Generator API}")
     private String appName;
 
     @Autowired
